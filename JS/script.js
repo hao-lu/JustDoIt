@@ -23,33 +23,23 @@ function enterClicked() {
 }
 
 function addTask(taskInput) {
-	// Unordered list 
-	var ulTask = document.getElementById("taskList");
+	var ulTask, liTask, circleBtn;
+	ulTask = document.getElementById("taskList");
 	// Creating an list item element 
-	var liTask = document.createElement("li");
-
-	// Creating the complete button for the list item
-	var completeButton = document.createElement("button");
-
-	completeButton.setAttribute("id", taskInput);
+	liTask = document.createElement("li");
 
 	// Concatenate to make unique idenifier 
 	liTask.setAttribute("id", taskInput + "_liTask");
-	// alert("HERE" + li.id);
 
-	completeButton.setAttribute("id", taskInput);
-	completeButton.setAttribute("class", "circle-button-img");
+	// Creating the complete button for the list item
+	circleBtn = document.createElement("button");
+	circleBtn.setAttribute("id", taskInput);
+	circleBtn.setAttribute("class", "circle-button-img");
+	circleBtn.addEventListener("click", removeDelete);
 
-	// Text for button
- 	// var t = document.createTextNode("delete");
-	// completeButton.appendChild(t);	
-
-	completeButton.addEventListener("click", removeDelete);
-
-	liTask.appendChild(completeButton);
+	liTask.appendChild(circleBtn);
 	liTask.appendChild(document.createTextNode(taskInput));
 	ulTask.appendChild(liTask);
-	// alert(li.id);
 }
 
 function removeDelete() {
@@ -60,8 +50,6 @@ function removeDelete() {
 	document.getElementById(id).remove();
 	// Delete list item 
 	document.getElementById(id + "_liTask").remove();
-
-	// alert(id + "_li");
 }
 
 function displayInputBox() {
@@ -69,5 +57,4 @@ function displayInputBox() {
 	var overlay = document.getElementById("tint-overlay");
 	overlay.style.display = "block";
 	inputBox.style.display = "block";
-
 }
